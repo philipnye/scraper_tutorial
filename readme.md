@@ -209,13 +209,15 @@ Note: These instructions are designed for Windows machines. Steps may vary on ot
 
 1. See if you can work out the `if...else` statement. (Hint: Your `if` statement will probably want to compare something to the null value `None`, using the formulation `if <something here> is None`.)
 
-    If you can get it working, open [this file](free_school_urns_october_2023.txt), copy the list of URNs there (a subset of primary free school URNs, as of October 2023[^1]) and replace the list that `target_urns` holds with this list.
+    If you can get it working, open [this file](free_school_urns_october_2023.txt), copy the list of URNs there (a subset of primary free school URNs, as of October 2023[^6]) and replace the list that `target_urns` holds with this list.
 
     If you're struggling, you can find a complete solution [here](scraper_solution.py).
 
 1. Congratulations! You've just written your first Python scraper, using not many lines of code at all.
 
-## Hints and notes
+# Further reading
+- [Real Python's guide to web-scraping](https://realpython.com/beautiful-soup-web-scraper-python/)
+
 [^1]: What you should have come up with is `print(soup.find("h2", class_="latest-rating__title").span)`.
 
 [^2]: This time your command should be `print(soup.find("h2", class_="latest-rating__title").span.contents)`.
@@ -224,21 +226,19 @@ Note: These instructions are designed for Windows machines. Steps may vary on ot
 
 [^4]: `print(soup.find("h2", class_="latest-rating__title").span.contents[0])`
 
-[^5]: Why just primary free schools? URLs for secondary schools are slightly different to those for primary schools on the Ofsted website (and different again for all-through, special and alternative provision free schools). E.g. https://reports.ofsted.gov.uk/provider/23/138245 is the URL for a secondary free school.
+[^5]:
+    ``` python
+    for target_urn in target_urns:
+        target_url = 'https://reports.ofsted.gov.uk/provider/21/' + str(target_urn)
 
-[^6]:
-``` python
-for target_urn in target_urns:
-    target_url = 'https://reports.ofsted.gov.uk/provider/21/' + str(target_urn)
+        r = requests.get(target_url)
+        soup = BeautifulSoup(r.content, features='html.parser')
 
-    r = requests.get(target_url)
-    soup = BeautifulSoup(r.content, features='html.parser')
+        print(
+            target_urn,
+            soup.find("h2", class_="latest-rating__title").span.contents[0],
+            sep=" "
+        )
+    ```
 
-    print(
-        target_urn, soup.find("h2", class_="latest-rating__title").span.contents[0], sep=" "
-    )
-
-```
-
-# Further reading
-- [Real Python's guide to web-scraping](https://realpython.com/beautiful-soup-web-scraper-python/)
+[^6]: Why just primary free schools? URLs for secondary schools are slightly different to those for primary schools on the Ofsted website (and different again for all-through, special and alternative provision free schools). E.g. https://reports.ofsted.gov.uk/provider/23/138245 is the URL for a secondary free school.
