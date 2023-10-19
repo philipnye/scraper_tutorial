@@ -139,15 +139,15 @@ Note: These instructions are designed for Windows machines. Steps may vary on ot
 
     Beautiful Soup allows you to get the contents of an element by adding `.contents` to what you've used to select an element.
 
-    So, add `.contents` to the end of what you've written previously, within the `print()` statement. Again, jump to the footnotes[^1] if you need the solution.
+    So, add `.contents` to the end of what you've written previously, within the `print()` statement. Again, jump to the footnotes[^2] if you need the solution.
 
 1. Hmmm, the square brackets around the output look familiar.
 
     To confirm what your Beautiful Soup command has returned, replace the `print()` function with the `type()` function.
 
-    Again, you'll find what you should have written in the footnotes.[^1] What you should find is that what Beautiful Soup has returned for you is a Python list, with a single element.
+    Again, you'll find what you should have written in the footnotes.[^3] What you should find is that what Beautiful Soup has returned for you is a Python list, with a single element.
 
-1. You know how to extract the n<sup>th</sup> element from a list - for a list named "my_list" this would be `my_list[n]`. So, see if you can work out what you need to add on to your existing Beautiful Soup commands to extract the inspection rating from the list you've extracted so far. And switch back from using the `type()` function to the `print()` function. See here[^1] for the solution.
+1. You know how to extract the n<sup>th</sup> element from a list - for a list named "my_list" this would be `my_list[n]`. So, see if you can work out what you need to add on to your existing Beautiful Soup commands to extract the inspection rating from the list you've extracted so far. And switch back from using the `type()` function to the `print()` function. See here[^4] for the solution.
 
 1. You've now scraped your first inspection rating!
 
@@ -183,7 +183,7 @@ Note: These instructions are designed for Windows machines. Steps may vary on ot
 
     See if you can do this, getting your scraper to print the URN then the inspection rating, separated by a space.
 
-    If you're struggling, see here[^1] for the solution.
+    If you're struggling, see here[^5] for the solution.
 
 1. Some free schools that closed a long time ago no longer have pages on the Ofsted website - for example, [Discovery New School in West Sussex](https://reports.ofsted.gov.uk/provider/21/137326). It's worth thinking about how you'll handle these cases.
 
@@ -216,17 +216,17 @@ Note: These instructions are designed for Windows machines. Steps may vary on ot
 1. Congratulations! You've just written your first Python scraper, using not many lines of code at all.
 
 ## Hints and notes
-[^1] What you should have come up with is `print(soup.find("h2", class_="latest-rating__title").span)`.
+[^1]: What you should have come up with is `print(soup.find("h2", class_="latest-rating__title").span)`.
 
-[^1] This time your command should be `print(soup.find("h2", class_="latest-rating__title").span.contents)`.
+[^2]: This time your command should be `print(soup.find("h2", class_="latest-rating__title").span.contents)`.
 
-[^1] `type(soup.find("h2", class_="latest-rating__title").span.contents)`
+[^3]: `type(soup.find("h2", class_="latest-rating__title").span.contents)`
 
-[^1] `print(soup.find("h2", class_="latest-rating__title").span.contents[0])`
+[^4]: `print(soup.find("h2", class_="latest-rating__title").span.contents[0])`
 
-[^1] Why just primary free schools? URLs for secondary schools are slightly different to those for primary schools on the Ofsted website (and different again for all-through, special and alternative provision free schools). E.g. https://reports.ofsted.gov.uk/provider/23/138245 is the URL for a secondary free school.
+[^5]: Why just primary free schools? URLs for secondary schools are slightly different to those for primary schools on the Ofsted website (and different again for all-through, special and alternative provision free schools). E.g. https://reports.ofsted.gov.uk/provider/23/138245 is the URL for a secondary free school.
 
-[^1]
+[^6]:
 ``` python
 for target_urn in target_urns:
     target_url = 'https://reports.ofsted.gov.uk/provider/21/' + str(target_urn)
